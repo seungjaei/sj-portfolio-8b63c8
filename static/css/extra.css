@@ -366,3 +366,8 @@ body.pv-open::after{content:"";position:fixed;inset:0;z-index:85;background:rgba
 .contact-wrap .links{align-content:stretch;grid-auto-rows:1fr}
 .contact-wrap .linkcard{height:100%;padding:var(--sp-6);border-radius:var(--r-lg);font-size:var(--fs-lg);font-weight:700;align-items:center}
 .contact-wrap .linkcard small{font-size:var(--fs-sm)}
+
+/* 유튜브 카드 뒤에 로고 문양(검정, 반투명)을 은은하게 깔아 빈 여백을 채운다 */
+.contact-wrap .linkcard{position:relative;overflow:hidden;isolation:isolate}
+.contact-wrap .linkcard::before{content:"";position:absolute;z-index:-1;right:3%;top:50%;height:100%;aspect-ratio:696/672;transform:translateY(-50%);background:url("../assets/polestar_mark.png") center/contain no-repeat;opacity:.1;pointer-events:none;transition:opacity .2s}
+.contact-wrap .linkcard:hover::before{filter:invert(1);opacity:.16}

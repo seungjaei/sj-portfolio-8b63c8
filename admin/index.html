@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko" data-static="1"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; connect-src 'self' https://*.supabase.co; img-src 'self' data:; media-src 'self'; frame-src https://www.youtube-nocookie.com; object-src 'none'; base-uri 'none'"><meta name="referrer" content="no-referrer"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow"><title>관리자 — 이승재</title>
+<link rel="stylesheet" href="../static/css/design-tokens.css"><link rel="stylesheet" href="../static/css/site.css"><link rel="stylesheet" href="../static/css/extra.css"></head>
+<body class="admin">
+<main class="login-wrap" id="view-login" hidden>
+  <form class="login-card" id="login" novalidate>
+    <div><span class="eyebrow">Admin</span><h1 class="mt8">관리자 로그인</h1><p class="muted mt8 small">방명록 내용은 관리자만 볼 수 있어요.</p></div>
+    <div class="state state-warn" id="st-off" role="alert">Supabase 설정이 아직 없어서 로그인할 수 없어요.</div>
+    <div class="field"><label for="em">이메일</label><input id="em" type="email" autocomplete="username"></div>
+    <div class="field" id="f-pw"><label for="pw">비밀번호</label>
+      <input id="pw" type="password" autocomplete="current-password" aria-describedby="e-pw">
+      <span class="err" id="e-pw" role="alert">이메일과 비밀번호를 입력해 주세요.</span></div>
+    <div class="state state-error" id="st-bad" role="alert">이메일 또는 비밀번호가 맞지 않아요.</div>
+    <div class="state state-warn" id="st-lock" role="alert">시도가 너무 많아요. 잠시 뒤에 다시 시도해 주세요.</div>
+    <button class="btn btn-primary" type="submit" id="login-btn">로그인</button>
+    <p class="fold"><a href="../index.html">← 홈페이지로 돌아가기</a></p>
+  </form>
+</main>
+<div id="view-list" hidden>
+<div class="admin-bar"><div class="container"><span><span class="badge">관리자</span> &nbsp;방명록 관리</span><span><a href="../index.html">홈페이지 보기</a> · <a href="#" id="logout">로그아웃</a></span></div></div>
+<main class="container section admin-main" id="main">
+  <div class="tabs" role="tablist" aria-label="관리 메뉴">
+    <button type="button" class="tab" role="tab" id="tab-gb" aria-selected="true" aria-controls="panel-gb">방명록</button>
+    <button type="button" class="tab" role="tab" id="tab-rq" aria-selected="false" aria-controls="panel-rq">이력서 요청 <span id="rq-new"></span></button>
+  </div>
+  <div id="panel-gb" role="tabpanel" aria-labelledby="tab-gb">
+  <h1 class="admin-h1">방명록 목록</h1>
+  <p class="muted">전체 이름과 내용은 이 화면에서만 보여요. 방문자에게는 개수와 마스킹 이름 알림만 나가요.</p>
+  <div class="stats"><div class="stat"><b id="n">0</b><span>전체 방명록</span></div><div class="stat"><b id="latest">-</b><span>가장 최근</span></div><div class="stat"><b>방문자 화면</b><span>내용 비공개</span></div></div>
+  <div class="state state-success" id="toast" role="status">삭제했어요.</div>
+  <div class="state state-error" id="toast-err" role="alert">삭제하지 못했어요. 잠시 뒤에 다시 시도해 주세요.</div>
+  <div class="entries list-gap" id="list"></div>
+  <div class="state state-empty" id="empty">아직 남겨진 방명록이 없어요.</div>
+  </div>
+  <div id="panel-rq" role="tabpanel" aria-labelledby="tab-rq" hidden>
+  <h1 class="admin-h1">이력서·포트폴리오 요청</h1>
+  <p class="muted">요청이 와도 알림 메일은 가지 않아요. 이 화면을 열어 확인해 주세요. 「메일 보내기」는 메일 작성 창만 열어 주고, 첨부와 전송은 직접 해요.</p>
+  <div class="state state-success" id="rq-toast" role="status">처리했어요.</div>
+  <div class="state state-error" id="rq-toast-err" role="alert">처리하지 못했어요. 잠시 뒤에 다시 시도해 주세요.</div>
+  <div class="entries list-gap" id="rq-list"></div>
+  <div class="state state-empty" id="rq-empty">아직 들어온 요청이 없어요.</div>
+  </div>
+</main>
+<dialog id="dlg" aria-labelledby="dlg-t">
+  <h2 id="dlg-t">이 항목을 삭제할까요?</h2><p>삭제하면 되돌릴 수 없어요.</p><p class="quote" id="dlg-q"></p>
+  <div class="actions"><button class="btn btn-ghost btn-sm" id="no">취소</button><button class="btn btn-danger btn-sm" id="yes">삭제하기</button></div>
+</dialog>
+</div>
+<script src="../static/js/supabase-config.js"></script><script src="../static/js/vendor/supabase.js"></script><script src="../static/js/admin-static.js"></script>
+</body></html>

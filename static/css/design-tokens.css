@@ -1,0 +1,57 @@
+/* design-tokens.css — 자기소개 홈페이지 디자인 토큰 (디자인팀, 2026-11-05)
+   라이트·주황 톤. 본문 글자는 어두운 색 고정. 주황은 강조에만.
+   대비(계산값): ink/bg 15.3:1 · ink-muted/bg 7.6:1 · accent-text/bg 5.7:1 · white/accent-strong 5.2:1
+   --color-accent(#FF6A1A)는 면·선·장식 전용. 작은 글자에 쓰지 않는다. */
+:root {
+  /* color */
+  --color-bg: #FFF8F0;
+  --color-surface: #FFFFFF;
+  --color-surface-warm: #FFF0E2;
+  --color-ink: #2A1F17;
+  --color-ink-muted: #5C4B3F;
+  --color-line: #EBD9C8;
+  --color-accent: #FF6A1A;          /* 장식·면 전용 */
+  --color-accent-strong: #C2410C;   /* 버튼 배경, 글자로 쓰는 주황 */
+  --color-accent-text: #B33A00;     /* 주황 글자(작은 글자 가능) */
+  --color-accent-soft: #FFE3CC;
+  --color-on-accent: #FFFFFF;
+  --color-focus: #1D4ED8;
+  --color-success-bg: #DCFCE7; --color-success-ink: #14532D;
+  --color-error-bg: #FEE4E2;   --color-error-ink: #9F1C12;
+  --color-warn-bg: #FEF0C7;    --color-warn-ink: #7A3F00;
+
+  /* font */
+  --font-sans: "Pretendard Variable", Pretendard, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+  --font-display: "Noto Serif KR", "Nanum Myeongjo", "AppleMyungjo", "Batang", serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --fs-xs: 0.8125rem;                         /* 13 라벨 */
+  --fs-sm: 0.9375rem;                         /* 15 캡션 */
+  --fs-md: 1.0625rem;                         /* 17 본문 */
+  --fs-lg: clamp(1.15rem, 1.05rem + 0.5vw, 1.35rem);
+  --fs-h3: clamp(1.2rem, 1.1rem + 0.5vw, 1.45rem);
+  --fs-h2: clamp(1.6rem, 1.3rem + 1.4vw, 2.3rem);
+  --fs-h1: clamp(2.4rem, 1.6rem + 4vw, 4.4rem);
+  --lh-body: 1.75; --lh-tight: 1.25;
+
+  /* space (4px 기준) */
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 24px;
+  --sp-6: 32px; --sp-7: 48px; --sp-8: 72px; --sp-9: 112px;
+  --container: 1120px;
+  --gutter: 20px;
+
+  /* radius */
+  --r-sm: 8px; --r-md: 16px; --r-lg: 28px; --r-pill: 999px;
+  --r-arch: 999px 999px 24px 24px;  /* 무대 아치 */
+
+  /* shadow (따뜻한 톤, 약하게) */
+  --shadow-1: 0 1px 2px rgba(120, 60, 20, .08);
+  --shadow-2: 0 8px 24px rgba(120, 60, 20, .10);
+  --shadow-3: 0 20px 48px rgba(194, 65, 12, .18);
+
+  /* motion */
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --dur: 180ms;
+}
+/* 반응형 기준: 360(기본) / 768(태블릿) / 1280(데스크톱) */
+@media (min-width: 768px)  { :root { --gutter: 32px; } }
+@media (min-width: 1280px) { :root { --gutter: 40px; } }

@@ -270,8 +270,17 @@
     if (!v) return;
     v.muted = true;
     if (reduce) { card.classList.add('rm'); v.controls = true; v.removeAttribute('aria-hidden'); v.removeAttribute('tabindex'); return; }
-    function start() { v.currentTime = 0; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
-    function stop() { v.pause(); v.load(); }
+    /* 소리 있는 영상: 브라우저는 사용자가 페이지를 한 번이라도 누른 뒤에만 소리 있는 자동재생을 허용한다.
+       허용되면 소리와 함께, 아니면 음소거로 재생하고 눌러서 들어가면 상세 페이지에서 소리와 함께 재생한다. */
+    var snd = v.hasAttribute('data-sound');
+    function start() {
+      v.currentTime = 0;
+      var ok = snd && navigator.userActivation && navigator.userActivation.hasBeenActive;
+      v.muted = !ok; v.volume = ok ? 0.6 : 1;
+      var p = v.play();
+      if (p && p.catch) p.catch(function () { v.muted = true; var q = v.play(); if (q && q.catch) q.catch(function () {}); });
+    }
+    function stop() { v.pause(); v.muted = true; v.load(); }
     card.addEventListener('pointerenter', start); card.addEventListener('pointerleave', stop);
     card.addEventListener('focusin', start); card.addEventListener('focusout', stop);
   });

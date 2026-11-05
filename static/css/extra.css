@@ -361,3 +361,8 @@ body.pv-open::after{content:"";position:fixed;inset:0;z-index:85;background:rgba
 .entry .req-meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:var(--fs-sm);color:var(--color-ink-muted)}
 .entry .badge-new{background:var(--color-accent-soft);color:var(--color-ink);font-weight:800;font-size:var(--fs-xs);padding:2px 10px;border-radius:var(--r-pill)}
 .entry footer{gap:8px;flex-wrap:wrap}
+
+/* 연락처 옆 유튜브 카드: 연락처 카드와 같은 크기로 오른쪽 칸을 채운다 */
+.contact-wrap .links{align-content:stretch;grid-auto-rows:1fr}
+.contact-wrap .linkcard{height:100%;padding:var(--sp-6);border-radius:var(--r-lg);font-size:var(--fs-lg);font-weight:700;align-items:center}
+.contact-wrap .linkcard small{font-size:var(--fs-sm)}

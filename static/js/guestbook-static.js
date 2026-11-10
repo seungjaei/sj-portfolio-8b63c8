@@ -21,18 +21,14 @@
   var client = window.supabase.createClient(cfg.url, cfg.anonKey, { auth: { persistSession: false, autoRefreshToken: false } });
   var GAP_MS = 30000, KEY = 'gb_last_sent';
 
-  function loadList() {
-    client.rpc('guestbook_public', { lim: 5 }).then(function (r) {
+  var pageRpc = true;       /* guestbook_page 함수가 DB에 있으면 true(없으면 예전 함수로 최신 10개만 보여 준다) */
+  function loadList(page) {
+    page = page || 1;
+    var q = pageRpc ? client.rpc('guestbook_page', { lim: 10, off: (page - 1) * 10 }) : client.rpc('guestbook_public', { lim: 10 });
+    q.then(function (r) {
+      if (r.error && pageRpc) { pageRpc = false; return loadList(1); }     /* 새 함수가 아직 없음 → 예전 함수로 */
       if (r.error || !r.data) return;
-      var j = r.data, c = $('#gb-count'); c.textContent = '지금까지 남겨진 방명록 ';
-      var b = document.createElement('b'); b.textContent = String(j.count); c.appendChild(b); c.appendChild(document.createTextNode('개'));
-      var ul = $('#gb-list'); ul.textContent = '';
-      (j.items || []).slice(0, 5).forEach(function (it) {
-        var li = document.createElement('li'), s = document.createElement('span'), t = document.createElement('time');
-        s.textContent = it.masked_name + ' 님이 방명록을 남겼습니다'; t.textContent = '(' + fmt(it.created_at) + ')';
-        li.appendChild(s); li.appendChild(t); ul.appendChild(li);
-      });
-      $('#gb-empty').classList.toggle('show', j.count === 0);
+      window.GBPager.show(r.data, page, loadList, pageRpc);
     });
   }
   $('#gb-msg').addEventListener('input', function (e) { $('#cnt').textContent = e.target.value.length; });
@@ -49,7 +45,7 @@
     client.from('guestbook_posts').insert({ name: n, message: m }).then(function (r) {
       if (r.error) { showState('err'); return; }
       try { window.localStorage.setItem(KEY, String(Date.now())); } catch (x) {}
-      showState('ok'); form.reset(); $('#cnt').textContent = 0; loadList();
+      showState('ok'); form.reset(); $('#cnt').textContent = 0; loadList(1);
     }).catch(function () { showState('err'); }).then(function () { $('#gb-submit').disabled = false; });
   });
   loadList();

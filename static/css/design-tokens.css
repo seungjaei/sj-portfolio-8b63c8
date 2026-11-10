@@ -1,37 +1,38 @@
-/* design-tokens.css — 자기소개 홈페이지 디자인 토큰 (디자인팀, 2026-11-05)
-   라이트·주황 톤. 본문 글자는 어두운 색 고정. 주황은 강조에만.
-   대비(계산값): ink/bg 15.3:1 · ink-muted/bg 7.6:1 · accent-text/bg 5.7:1 · white/accent-strong 5.2:1
-   --color-accent(#FF6A1A)는 면·선·장식 전용. 작은 글자에 쓰지 않는다. */
+/* design-tokens.css — 자기소개 포트폴리오 디자인 토큰 (v5, 2026-11-10 사용자 피드백 반영)
+   방향: 가독성 우선(고대비) + 트렌디한 타이포. 밝은 바탕 + 거의 검은 글자 + 선명한 인디고 포인트, 라임은 장식 전용.
+   대비(계산값): ink/bg 18.6:1 · ink-muted/bg 8.9:1 · accent-text/bg 7.4:1 · white/accent-strong 8.1:1 · white/accent 6.6:1
+   --color-accent(#4338FF)는 면·선·큰 글자. 작은 글자는 --color-accent-text. --color-lime은 형광펜·장식 전용(글자색 금지). */
 :root {
   /* color */
-  --color-bg: #FFF8F0;
+  --color-bg: #FAFAF8;
   --color-surface: #FFFFFF;
-  --color-surface-warm: #FFF0E2;
-  --color-ink: #2A1F17;
-  --color-ink-muted: #5C4B3F;
-  --color-line: #EBD9C8;
-  --color-accent: #FF6A1A;          /* 장식·면 전용 */
-  --color-accent-strong: #C2410C;   /* 버튼 배경, 글자로 쓰는 주황 */
-  --color-accent-text: #B33A00;     /* 주황 글자(작은 글자 가능) */
-  --color-accent-soft: #FFE3CC;
+  --color-surface-warm: #F1F3FF;    /* 번갈아 나오는 섹션 바탕(연한 인디고 틴트) — 이름은 호환용으로 유지 */
+  --color-ink: #0E0F13;
+  --color-ink-muted: #444A57;
+  --color-line: #D9DCE5;
+  --color-accent: #4338FF;          /* 면·선·큰 글자 */
+  --color-accent-strong: #3326E8;   /* 버튼 배경, 글자로 쓰는 포인트 */
+  --color-accent-text: #3326E8;     /* 포인트 글자(작은 글자 가능) */
+  --color-accent-soft: #E6E7FF;
+  --color-lime: #D7FF3F;            /* 형광펜·장식 전용 */
   --color-on-accent: #FFFFFF;
-  --color-focus: #1D4ED8;
+  --color-focus: #FF4D00;
   --color-success-bg: #DCFCE7; --color-success-ink: #14532D;
   --color-error-bg: #FEE4E2;   --color-error-ink: #9F1C12;
   --color-warn-bg: #FEF0C7;    --color-warn-ink: #7A3F00;
 
-  /* font */
+  /* font — 파일은 /static/fonts 에 직접 설치(Pretendard·Wanted Sans, SIL OFL 1.1) */
   --font-sans: "Pretendard Variable", Pretendard, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
-  --font-display: "Noto Serif KR", "Nanum Myeongjo", "AppleMyungjo", "Batang", serif;
+  --font-display: "Wanted Sans Variable", "Pretendard Variable", Pretendard, "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
   --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --fs-xs: 0.8125rem;                         /* 13 라벨 */
   --fs-sm: 0.9375rem;                         /* 15 캡션 */
   --fs-md: 1.0625rem;                         /* 17 본문 */
   --fs-lg: clamp(1.15rem, 1.05rem + 0.5vw, 1.35rem);
   --fs-h3: clamp(1.2rem, 1.1rem + 0.5vw, 1.45rem);
-  --fs-h2: clamp(1.6rem, 1.3rem + 1.4vw, 2.3rem);
-  --fs-h1: clamp(2.4rem, 1.6rem + 4vw, 4.4rem);
-  --lh-body: 1.75; --lh-tight: 1.25;
+  --fs-h2: clamp(1.8rem, 1.4rem + 1.8vw, 2.7rem);
+  --fs-h1: clamp(2.8rem, 1.8rem + 5vw, 5.2rem);
+  --lh-body: 1.7; --lh-tight: 1.2;
 
   /* space (4px 기준) */
   --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 24px;
@@ -40,13 +41,13 @@
   --gutter: 20px;
 
   /* radius */
-  --r-sm: 8px; --r-md: 16px; --r-lg: 28px; --r-pill: 999px;
+  --r-sm: 10px; --r-md: 18px; --r-lg: 28px; --r-pill: 999px;
   --r-arch: 999px 999px 24px 24px;  /* 무대 아치 */
 
-  /* shadow (따뜻한 톤, 약하게) */
-  --shadow-1: 0 1px 2px rgba(120, 60, 20, .08);
-  --shadow-2: 0 8px 24px rgba(120, 60, 20, .10);
-  --shadow-3: 0 20px 48px rgba(194, 65, 12, .18);
+  /* shadow (차가운 톤, 약하게) */
+  --shadow-1: 0 1px 2px rgba(20, 20, 60, .08);
+  --shadow-2: 0 8px 24px rgba(20, 20, 60, .10);
+  --shadow-3: 0 20px 48px rgba(51, 38, 232, .20);
 
   /* motion */
   --ease: cubic-bezier(.2, .7, .2, 1);

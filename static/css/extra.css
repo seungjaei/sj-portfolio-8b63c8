@@ -566,3 +566,32 @@ video.no-audio::-webkit-media-controls-volume-control-container{display:none!imp
   .vidcard:hover .ai-thumb .vol:not(.locked),.vidcard:focus-within .ai-thumb .vol:not(.locked){opacity:1;transform:none;pointer-events:auto}
   .vidcard:hover .ai-thumb .vol.locked,.vidcard:focus-within .ai-thumb .vol.locked{opacity:1;transform:none}
 }
+
+/* ===== v10 (2026-11-10) 8비트 AI 오피스 특집 ===== */
+.hero-badge{display:inline-flex;align-items:center;gap:8px;margin:var(--sp-3) 0 var(--sp-2) var(--sp-2);padding:6px 14px 6px 6px;border:1.5px solid var(--color-ink);border-radius:var(--r-pill);background:var(--color-surface);color:var(--color-ink);font-weight:700;font-size:var(--fs-sm);text-decoration:none;transition:background var(--dur) var(--ease),color var(--dur) var(--ease)}
+.hero-badge b{background:var(--color-accent-strong);color:#fff;border-radius:var(--r-pill);padding:2px 10px;font-family:var(--font-display);font-size:.72rem;letter-spacing:.06em}
+.hero-badge:hover{background:var(--color-ink);color:#fff}
+.office-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(24px,3vw,44px);align-items:start}
+@media (max-width:860px){.office-grid{grid-template-columns:1fr}}
+.office-clip{margin:0}
+.office-video{display:block;width:100%;height:auto;aspect-ratio:800/734;object-fit:cover;background:#16171d;border:2px solid var(--color-ink);border-radius:var(--r-md);box-shadow:var(--shadow-3)}
+.office-clip figcaption{margin-top:var(--sp-3);color:var(--color-ink-muted);font-size:var(--fs-sm);line-height:1.6}
+.office-side{display:grid;gap:var(--sp-4)}
+.office-facts{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-3)}
+.office-facts li{background:var(--color-surface);border:1px solid var(--color-line);border-radius:var(--r-md);padding:var(--sp-4)}
+.office-facts b{display:block;font-family:var(--font-display);font-weight:800;letter-spacing:-.03em;margin-bottom:4px}
+.office-facts span{color:var(--color-ink-muted);font-size:var(--fs-sm);line-height:1.55}
+.office-shots{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-3)}
+.office-shots .shot-btn{display:block;width:100%;padding:0;border:1.5px solid var(--color-ink);border-radius:var(--r-sm);overflow:hidden;background:var(--color-surface);cursor:pointer;aspect-ratio:1/1}
+.office-shots .shot-btn img{width:100%;height:100%;object-fit:cover;object-position:top left;display:block;transition:transform .5s var(--ease)}
+.office-shots .shot-btn:hover img{transform:scale(1.05)}
+.office-shots .shot-cap{margin-top:6px;font-size:var(--fs-xs)}
+.office-shots .shot-cap b{display:block;color:var(--color-ink)}
+.office-shots .shot-cap span{display:none}
+.office-side .btn{justify-self:start}
+
+/* 오피스 특집: 포트폴리오(자동화 구축 그룹) 안의 블록 */
+.office-feature{margin:var(--sp-4) 0 var(--sp-6);padding:clamp(18px,3vw,32px);background:var(--color-surface);border:2px solid var(--color-ink);border-radius:var(--r-md)}
+.office-head{margin-bottom:var(--sp-5)}
+.office-head h4{margin:6px 0 var(--sp-2);font-family:var(--font-display);font-weight:800;letter-spacing:-.03em;font-size:var(--fs-lg,1.35rem)}
+.office-head p{margin:0;color:var(--color-ink-muted);line-height:1.65;max-width:68ch}

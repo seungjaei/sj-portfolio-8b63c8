@@ -365,3 +365,16 @@
   subs.push(paint, ytApply, vidApply);
   paint();
 })();
+
+/* ---- v11 (2026-11-10): 오피스 영상 — 사용자 요청: 재생 버튼 없이 처음부터 계속 자동재생(음소거·반복) ---- */
+(function () {
+  var v = document.querySelector('.office-video');
+  if (!v) return;
+  v.muted = true; v.loop = true; v.controls = false; v.setAttribute('playsinline', '');
+  function go() { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+  go();
+  v.addEventListener('canplay', go);
+  v.addEventListener('pause', function () { if (!document.hidden) setTimeout(go, 200); });
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) go(); });
+  window.addEventListener('pointerdown', go, { once: true });
+})();

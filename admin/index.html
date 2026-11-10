@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="ko" data-static="1"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; connect-src 'self' https://*.supabase.co; img-src 'self' data:; media-src 'self'; frame-src https://www.youtube-nocookie.com; object-src 'none'; base-uri 'none'"><meta name="referrer" content="no-referrer"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow"><title>관리자 — 이승재</title>
-<link rel="stylesheet" href="../static/css/design-tokens.css"><link rel="stylesheet" href="../static/css/site.css"><link rel="stylesheet" href="../static/css/extra.css"></head>
+<link rel="stylesheet" href="../static/css/design-tokens.css"><link rel="stylesheet" href="../static/css/site.css"><link rel="stylesheet" href="../static/css/extra.css"><link rel="stylesheet" href="../static/css/admin.css"></head>
 <body class="admin">
 <main class="login-wrap" id="view-login" hidden>
+  <aside class="login-hero" aria-hidden="true"><div class="who"><img src="../static/assets/profile_circle.png" alt="">이승재 · Portfolio</div>
+  <div><h2>홈페이지<br><em>관리자</em> 공간</h2><p>방문자가 남긴 방명록과 이력서·포트폴리오 요청을 한곳에서 확인하고 정리합니다.</p>
+  <ul><li>방명록 전체 이름·내용 확인과 삭제</li><li>이력서·포트폴리오 요청 확인과 메일 작성</li><li>방문자 화면에는 개수와 마스킹 이름만 공개</li></ul></div>
+  <small>관리자 계정만 들어올 수 있어요.</small></aside>
+  <div class="login-side">
   <form class="login-card" id="login" novalidate>
-    <div><span class="eyebrow">Admin</span><h1 class="mt8">관리자 로그인</h1><p class="muted mt8 small">방명록 내용은 관리자만 볼 수 있어요.</p></div>
+    <div><span class="eyebrow">Admin</span><h1 class="mt8">관리자 로그인</h1><p class="muted mt8 small">관리자 계정으로 로그인해 주세요.</p></div>
     <div class="state state-warn" id="st-off" role="alert">Supabase 설정이 아직 없어서 로그인할 수 없어요.</div>
     <div class="field"><label for="em">이메일</label><input id="em" type="email" autocomplete="username"></div>
     <div class="field" id="f-pw"><label for="pw">비밀번호</label>
@@ -15,10 +20,10 @@
     <div class="state state-warn" id="st-lock" role="alert">시도가 너무 많아요. 잠시 뒤에 다시 시도해 주세요.</div>
     <button class="btn btn-primary" type="submit" id="login-btn">로그인</button>
     <p class="fold"><a href="../index.html">← 홈페이지로 돌아가기</a></p>
-  </form>
+  </form></div>
 </main>
 <div id="view-list" hidden>
-<div class="admin-bar"><div class="container"><span><span class="badge">관리자</span> &nbsp;방명록 관리</span><span><a href="../index.html">홈페이지 보기</a> · <a href="#" id="logout">로그아웃</a></span></div></div>
+<div class="admin-bar"><div class="container"><span class="brand"><img src="../static/assets/profile_circle.png" alt="">이승재 <span class="badge">관리자</span></span><span class="nav"><a href="../index.html">홈페이지 보기</a><a href="../admin/index.html">새로고침</a><a href="#" id="logout">로그아웃</a></span></div></div>
 <main class="container section admin-main" id="main">
   <div class="tabs" role="tablist" aria-label="관리 메뉴">
     <button type="button" class="tab" role="tab" id="tab-gb" aria-selected="true" aria-controls="panel-gb">방명록</button>

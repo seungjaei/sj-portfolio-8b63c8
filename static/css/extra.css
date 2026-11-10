@@ -595,3 +595,6 @@ video.no-audio::-webkit-media-controls-volume-control-container{display:none!imp
 .office-head{margin-bottom:var(--sp-5)}
 .office-head h4{margin:6px 0 var(--sp-2);font-family:var(--font-display);font-weight:800;letter-spacing:-.03em;font-size:var(--fs-lg,1.35rem)}
 .office-head p{margin:0;color:var(--color-ink-muted);line-height:1.65;max-width:68ch}
+/* 가로(16:9) 영상: 담이 산책 일기 게임 플레이 영상 */
+.vid.wide{max-width:880px}
+.vid.wide video,.vid video.wide{aspect-ratio:16/9}

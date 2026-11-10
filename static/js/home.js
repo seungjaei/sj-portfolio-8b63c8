@@ -269,7 +269,7 @@
   document.querySelectorAll('.vidcard').forEach(function (card) {
     var v = card.querySelector('video');
     if (!v) return;
-    v.muted = true; v.loop = true; v.setAttribute('playsinline', ''); v.preload = 'auto';
+    v.muted = true; v.loop = true; v.setAttribute('playsinline', '');
     if (reduce) { card.classList.add('rm'); v.controls = true; v.removeAttribute('aria-hidden'); v.removeAttribute('tabindex'); return; }
     if (touch) { seen.push(v); return; }
     var snd = v.hasAttribute('data-sound');   /* 소리 있는 영상: 사용자가 페이지를 한 번이라도 눌렀다면 소리와 함께, 아니면 음소거 */
@@ -346,12 +346,13 @@
     }
   };
   var bars = document.querySelectorAll('.vol[data-vol]');
+  var ICON_ON = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 9.5v5h3.6L13 19V5L7.6 9.5H4z" fill="currentColor"/><path d="M16.2 9.2a4 4 0 0 1 0 5.6M18.8 6.6a7.6 7.6 0 0 1 0 10.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>', ICON_OFF = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 9.5v5h3.6L13 19V5L7.6 9.5H4z" fill="currentColor"/><path d="M16.5 9.5l5 5m0-5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';   /* 고정 아이콘(SVG 문자열 상수) */
   function paint() {
     bars.forEach(function (b) {
       var rg = b.querySelector('.vol-range'), o = b.querySelector('.vol-val'), bt = b.querySelector('.vol-btn');
-      var shown = st.muted ? 0 : Math.round(st.vol * 100);
-      rg.value = shown; o.textContent = shown;
-      bt.textContent = (st.muted || st.vol === 0) ? '🔇' : '🔊';
+      var off = st.muted || st.vol === 0, shown = off ? 0 : Math.round(st.vol * 100);
+      rg.value = shown; rg.style.setProperty('--p', shown + '%'); o.textContent = shown + '%';
+      bt.innerHTML = off ? ICON_OFF : ICON_ON; b.classList.toggle('is-off', off);
       bt.setAttribute('aria-pressed', String(st.muted)); bt.setAttribute('aria-label', st.muted ? '소리 켜기' : '소리 끄기');
     });
   }

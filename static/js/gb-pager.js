@@ -38,7 +38,7 @@
       var nav = $('#gb-pager'); if (!nav) return;
       var total = Math.max(1, Math.ceil(data.count / SIZE));
       nav.textContent = '';
-      if (!canPage || total < 2) { nav.hidden = true; return; }
+      nav.hidden = true; return;   /* 사용자 결정(2026-11-10): 페이지 번호 없이 목록을 위아래로 넘겨 본다 */
       nav.hidden = false;
       nav.appendChild(btn('‹ 이전', page - 1, goto, { disabled: page <= 1, aria: '이전 페이지' }));
       pages(total, page).forEach(function (n) { nav.appendChild(btn(String(n), n, goto, { current: n === page, aria: n + '페이지' })); });

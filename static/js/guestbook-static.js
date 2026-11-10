@@ -21,7 +21,7 @@
   var client = window.supabase.createClient(cfg.url, cfg.anonKey, { auth: { persistSession: false, autoRefreshToken: false } });
   var GAP_MS = 30000, KEY = 'gb_last_sent';
 
-  var pageRpc = true;       /* guestbook_page 함수가 DB에 있으면 true(없으면 예전 함수로 최신 10개만 보여 준다) */
+  var pageRpc = false;       /* guestbook_page 함수가 DB에 있으면 true(없으면 예전 함수로 최신 10개만 보여 준다) */
   function loadList(page) {
     page = page || 1;
     var q = pageRpc ? client.rpc('guestbook_page', { lim: 10, off: (page - 1) * 10 }) : client.rpc('guestbook_public', { lim: 10 });

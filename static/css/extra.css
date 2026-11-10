@@ -519,18 +519,50 @@ body.pv-open::after{display:none!important}
   .notice-list li{min-height:30px;padding:2px 12px;font-size:.9rem;line-height:1.3}
 }
 
-/* ===== v9 (2026-11-10) 음량 조절 막대 ===== */
-.vol{display:flex;align-items:center;gap:10px;margin-top:var(--sp-3);position:relative;z-index:7}
-.vol-btn{flex:none;width:36px;height:36px;border-radius:50%;border:1.5px solid var(--color-ink);background:var(--color-surface);font-size:1rem;line-height:1;cursor:pointer}
-.vol-btn:hover{background:var(--color-ink)}
-.vol-range{flex:1;min-width:0;accent-color:var(--color-accent-strong);height:6px;cursor:pointer}
-.vol-val{flex:none;min-width:2.2em;text-align:right;font-size:var(--fs-xs);font-weight:700;color:var(--color-ink-muted)}
+/* ===== v9 (2026-11-10, 재디자인) 소리 조절 — 아이콘 버튼 + 채움 슬라이더 + 퍼센트. 이모지 대신 SVG ===== */
+.vol{display:flex;align-items:center;gap:12px;margin-top:var(--sp-4);padding:7px 16px 7px 7px;background:var(--color-surface-warm);border:1px solid var(--color-line);border-radius:var(--r-pill);position:relative;z-index:7}
+.vol-btn{flex:none;width:34px;height:34px;border-radius:50%;border:0;background:var(--color-ink);color:#fff;display:grid;place-items:center;cursor:pointer;padding:0;transition:background var(--dur) var(--ease),transform var(--dur) var(--ease)}
+.vol-btn svg{width:18px;height:18px;display:block}
+.vol-btn:hover{background:var(--color-accent-strong);transform:scale(1.06)}
+.vol.is-off .vol-btn{background:var(--color-accent-strong)}
+.vol-range{-webkit-appearance:none;appearance:none;flex:1;min-width:0;height:4px;margin:0;border-radius:99px;cursor:pointer;
+  background:linear-gradient(to right,var(--color-accent-strong) var(--p,35%),#CBD0E4 var(--p,35%))}
+.vol-range::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:#fff;border:2px solid var(--color-ink);box-shadow:0 1px 4px rgba(14,15,19,.3);transition:transform var(--dur) var(--ease)}
+.vol-range:hover::-webkit-slider-thumb,.vol-range:active::-webkit-slider-thumb{transform:scale(1.2)}
+.vol-range::-moz-range-track{height:4px;border-radius:99px;background:#CBD0E4}
+.vol-range::-moz-range-progress{height:4px;border-radius:99px;background:var(--color-accent-strong)}
+.vol-range::-moz-range-thumb{width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid var(--color-ink)}
+.vol-val{flex:none;min-width:2.8em;text-align:right;font-family:var(--font-display);font-weight:700;font-size:.8rem;font-variant-numeric:tabular-nums;color:var(--color-ink-muted)}
+.vol.is-off .vol-val{color:var(--color-accent-text)}
+/* 영상 위(어두운 유리 막대) */
 .ai-thumb{position:relative}
-.ai-thumb .vol{position:absolute;left:10px;right:10px;bottom:10px;margin:0;padding:6px 12px;background:rgba(14,15,19,.78);border-radius:var(--r-pill);color:#fff}
-.ai-thumb .vol .vol-btn{width:30px;height:30px;border-color:#fff;background:transparent}
+.ai-thumb .vol{position:absolute;left:10px;right:10px;bottom:10px;margin:0;background:rgba(14,15,19,.68);border:1px solid rgba(255,255,255,.14);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.ai-thumb .vol .vol-btn{background:var(--color-lime);color:var(--color-ink)}
+.ai-thumb .vol .vol-btn:hover{background:#fff}
+.ai-thumb .vol.is-off .vol-btn{background:#fff}
+.ai-thumb .vol .vol-range{background:linear-gradient(to right,var(--color-lime) var(--p,35%),rgba(255,255,255,.3) var(--p,35%))}
+.ai-thumb .vol .vol-range::-moz-range-track{background:rgba(255,255,255,.3)}
+.ai-thumb .vol .vol-range::-moz-range-progress{background:var(--color-lime)}
 .ai-thumb .vol .vol-val{color:#fff}
-.vol.locked{justify-content:center;font-weight:700;font-size:.85rem;color:#fff;pointer-events:none}
+/* 소리 없는 영상: 왼쪽 아래 작은 알약(조절 불가) */
+.ai-thumb .vol.locked{left:10px;right:auto;gap:8px;padding:5px 14px 5px 5px;color:#fff;font-size:.8rem;font-weight:700;pointer-events:none}
+.vol-ico{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.16);display:grid;place-items:center;color:#fff}
+.vol-ico svg{width:15px;height:15px;display:block}
 /* 소리 없는 영상의 상세 페이지 플레이어: 소리 버튼·음량 막대를 숨긴다(크롬·사파리) */
 video.no-audio::-webkit-media-controls-mute-button,
 video.no-audio::-webkit-media-controls-volume-slider,
 video.no-audio::-webkit-media-controls-volume-control-container{display:none!important}
+
+/* 방명록 목록: 페이지 번호 없이 박스 안에서 위아래로 스크롤(줄 크기는 보기 편하게) */
+.notice-list{scrollbar-width:thin}
+@media (min-width:860px){
+  .notice-list{gap:8px;padding-right:6px}
+  .notice-list li{min-height:44px;padding:8px 14px;font-size:1rem;line-height:1.4}
+}
+
+/* 영상 카드 위 스피커(소리 조절·소리 없음)는 마우스를 올렸을 때만 보인다(사용자 요청 2026-11-10). 터치 기기는 호버가 없어 항상 보인다 */
+@media (hover:hover) and (pointer:fine){
+  .ai-thumb .vol{opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .2s var(--ease),transform .2s var(--ease)}
+  .vidcard:hover .ai-thumb .vol:not(.locked),.vidcard:focus-within .ai-thumb .vol:not(.locked){opacity:1;transform:none;pointer-events:auto}
+  .vidcard:hover .ai-thumb .vol.locked,.vidcard:focus-within .ai-thumb .vol.locked{opacity:1;transform:none}
+}

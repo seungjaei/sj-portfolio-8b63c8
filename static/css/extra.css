@@ -598,3 +598,18 @@ video.no-audio::-webkit-media-controls-volume-control-container{display:none!imp
 /* 가로(16:9) 영상: 담이 산책 일기 게임 플레이 영상 */
 .vid.wide{max-width:880px}
 .vid.wide video,.vid video.wide{aspect-ratio:16/9}
+/* 휴대폰: AI 오피스 카드 정렬 (설명은 한 줄씩, 화면 사진은 크게 옆으로 넘겨 보기) */
+@media (max-width:600px){
+  .office-feature{padding:16px;margin-left:0;margin-right:0;overflow:hidden}
+  .office-head{margin-bottom:var(--sp-4)}
+  .office-video{box-shadow:0 10px 24px -14px rgba(20,18,60,.45)}
+  .office-facts{grid-template-columns:1fr;gap:10px}
+  .office-facts li{padding:14px 16px}
+  .office-shots{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:8px;margin:0;scrollbar-width:thin}
+  .office-shots li{flex:0 0 82%;scroll-snap-align:start;min-width:0}
+  .office-shots .shot-btn{aspect-ratio:1010/900}
+  .office-shots .shot-btn img{object-fit:cover;object-position:center}
+  .office-shots .shot-cap{font-size:var(--fs-sm)}
+  .office-shots .shot-cap span{display:block;color:var(--color-ink-muted);margin-top:2px}
+  .office-side .btn{justify-self:stretch;text-align:center}
+}

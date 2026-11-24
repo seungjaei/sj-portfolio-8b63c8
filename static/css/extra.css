@@ -613,3 +613,41 @@ video.no-audio::-webkit-media-controls-volume-control-container{display:none!imp
   .office-shots .shot-cap span{display:block;color:var(--color-ink-muted);margin-top:2px}
   .office-side .btn{justify-self:stretch;text-align:center}
 }
+
+/* ===== 2026-11-24 개편: 인스타 채널 운영 · 일하는 방식 · 메뉴 ===== */
+.chn-list{display:grid;gap:var(--sp-7)}
+.chn{display:grid;gap:var(--sp-6);align-items:start}
+@media (min-width:900px){.chn{grid-template-columns:minmax(300px,380px) 1fr}.chn:nth-child(even){grid-template-columns:1fr minmax(300px,380px)}.chn:nth-child(even) .chn-feed{order:2}}
+.igp{background:var(--color-surface);border:1px solid var(--color-line);border-radius:var(--r-lg);padding:var(--sp-4);box-shadow:var(--shadow-2)}
+.igp-top{display:flex;align-items:center;gap:var(--sp-3)}
+.igp-top img.igp-av{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--color-line)}
+.igp-id b{display:block;font-size:var(--fs-md)}.igp-id small{color:var(--color-ink-muted);font-size:var(--fs-xs)}
+.igp-bio{margin:var(--sp-3) 0;font-size:var(--fs-sm);line-height:1.55;display:flex;flex-direction:column}
+.igp-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:2px;border-radius:var(--r-sm);overflow:hidden}
+.igp-grid .ft{position:relative;aspect-ratio:4/5;background:#111;overflow:hidden}
+.igp-grid .ft img,.igp-grid .ft video{width:100%;height:100%;object-fit:cover;display:block}
+.ft-reel{position:absolute;top:6px;right:8px;color:#fff;font-size:12px;text-shadow:0 1px 3px rgba(0,0,0,.7)}
+.chn-genre{font-size:var(--fs-xs);font-weight:700;color:var(--color-accent-text);letter-spacing:.04em}
+.chn-body h3{font-family:var(--font-display);font-size:var(--fs-h3);margin:var(--sp-2) 0 var(--sp-3)}
+.chn-body h3 a{color:inherit;text-decoration:none}.chn-body h3 small{font-size:var(--fs-sm);color:var(--color-ink-muted);font-weight:500;margin-left:6px}
+.chn-plan{color:var(--color-ink);margin-bottom:var(--sp-4)}
+.chn-body h4{font-size:var(--fs-sm);letter-spacing:.06em;color:var(--color-ink-muted);margin-bottom:var(--sp-2)}
+.chn-how{list-style:none;margin:0 0 var(--sp-4);padding:0;display:grid;gap:var(--sp-3)}
+.chn-how li{border-left:3px solid var(--color-accent);padding:2px 0 2px var(--sp-3)}
+.chn-how b{display:block;font-size:var(--fs-sm)}.chn-how span{font-size:var(--fs-sm);color:var(--color-ink-muted)}
+.chn-result{font-size:var(--fs-sm);background:var(--color-accent-soft);border-radius:var(--r-sm);padding:var(--sp-2) var(--sp-3);margin-bottom:var(--sp-4)}
+.chn-result b{margin-right:6px;color:var(--color-accent-text)}
+.chn-cta{display:flex;flex-wrap:wrap;gap:var(--sp-2)}
+.how-grid{list-style:none;margin:0;padding:0;display:grid;gap:var(--sp-4)}
+@media (min-width:768px){.how-grid{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1100px){.how-grid{grid-template-columns:repeat(3,1fr)}}
+.card.how{padding:var(--sp-5)}
+.how-n{font-family:var(--font-display);font-weight:800;color:var(--color-lime);font-size:1.4rem}
+.card.how h3{font-size:var(--fs-lg);margin:var(--sp-2) 0}
+.menu-grid{list-style:none;margin:0;padding:0;display:grid;gap:var(--sp-4)}
+@media (min-width:768px){.menu-grid{grid-template-columns:repeat(3,1fr)}}
+.menu-card{display:block;padding:var(--sp-5);text-decoration:none;color:inherit;height:100%}
+.menu-card h3{font-size:var(--fs-lg);margin-bottom:var(--sp-2)}.menu-card p{color:var(--color-ink-muted);font-size:var(--fs-sm)}
+.dx-feed{max-width:420px}
+.cat-h{font-family:var(--font-display);font-size:var(--fs-h3);margin:var(--sp-6) 0 var(--sp-4)}
+@media (max-width:767px){.nav .nav-how{display:none}}

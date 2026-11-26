@@ -361,7 +361,7 @@
   font-weight: 600;
 }
 .aim-loop .aim-pass::before {
-  content: "통과 ";
+  content: "완료 기준 ";
   color: var(--color-accent-text);
   font-weight: 800;
 }
@@ -496,4 +496,14 @@
     transition: none;
     transform: none;
   }
+}
+
+/* v3: 상단 요약 — 본문 글꼴 대신 제목 글꼴로, 짧고 또렷하게 */
+.dx-summary.aim-summary {
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  font-weight: 600;
+  line-height: 1.65;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
 }

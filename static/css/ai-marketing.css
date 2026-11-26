@@ -1,0 +1,328 @@
+/* ai-marketing.css — 'AI 마케팅 기획' 페이지·섹션 전용
+   규칙: 모든 클래스는 .aim- 접두사를 쓴다. 기존 site.css·extra.css의 클래스는 고치지 않는다.
+   인라인 style을 쓰지 않으므로 CSP(default-src 'self') 안에서 그대로 동작한다. */
+
+/* ---------- 5단계 루프 ---------- */
+.aim-loop {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--sp-4);
+  counter-reset: aim-step;
+}
+.aim-loop > li {
+  position: relative;
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-left: 4px solid var(--color-accent);
+  border-radius: var(--r-md);
+  padding: var(--sp-4) var(--sp-4) var(--sp-4) var(--sp-5);
+  min-width: 0;
+}
+.aim-loop > li:not(:last-child)::after {
+  content: "↓";
+  position: absolute;
+  left: 50%;
+  bottom: calc(-1 * var(--sp-4));
+  transform: translate(-50%, 0);
+  z-index: 1;
+  color: var(--color-accent-text);
+  font-weight: 800;
+  font-size: 0.9rem;
+  line-height: 1;
+}
+.aim-loop .aim-n {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.14em;
+  color: var(--color-accent-text);
+}
+.aim-loop h3 {
+  font-size: var(--fs-md);
+  line-height: 1.35;
+  margin: 4px 0 6px;
+  letter-spacing: -0.01em;
+}
+.aim-loop p {
+  margin: 0;
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: var(--color-ink-muted);
+}
+.aim-loop-return {
+  margin: var(--sp-3) 0 0;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--color-ink-muted);
+  text-align: center;
+}
+.aim-loop-return::before {
+  content: "↺ ";
+  color: var(--color-accent-text);
+}
+
+@media (min-width: 900px) {
+  .aim-loop {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0 var(--sp-5);
+    align-items: stretch;
+  }
+  .aim-loop > li {
+    border-left: 1px solid var(--color-line);
+    border-top: 4px solid var(--color-accent);
+    border-radius: var(--r-md);
+  }
+  .aim-loop > li:not(:last-child)::after {
+    content: "→";
+    left: auto;
+    right: calc(-1 * var(--sp-5));
+    bottom: auto;
+    top: 50%;
+    transform: translate(50%, -50%);
+  }
+  .aim-loop-return {
+    text-align: right;
+    margin-top: var(--sp-2);
+  }
+}
+
+/* 섹션 안에서 쓰는 축약형: 홈에서는 한 줄 설명만 */
+.aim-loop--compact > li {
+  padding: var(--sp-3) var(--sp-3) var(--sp-3) var(--sp-4);
+}
+.aim-loop--compact h3 {
+  font-size: var(--fs-sm);
+  margin-bottom: 2px;
+}
+
+/* 상세 페이지처럼 폭이 좁은 곳에서 쓰는 변형 */
+.aim-loop--narrow h3 {
+  font-size: var(--fs-sm);
+}
+.aim-loop--narrow p {
+  font-size: var(--fs-xs);
+  line-height: 1.55;
+}
+
+/* ---------- 표 공통 ---------- */
+.aim-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--r-md);
+}
+.aim-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  font-size: var(--fs-sm);
+}
+.aim-table caption {
+  caption-side: top;
+  text-align: left;
+  font-size: var(--fs-xs);
+  color: var(--color-ink-muted);
+  padding: 0 0 var(--sp-2);
+}
+.aim-table th,
+.aim-table td {
+  padding: 12px var(--sp-4);
+  border-bottom: 1px solid var(--color-line);
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.65;
+}
+.aim-table thead th {
+  background: var(--color-surface-warm);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.06em;
+  color: var(--color-ink);
+  white-space: nowrap;
+}
+.aim-table tbody th {
+  font-weight: 700;
+  color: var(--color-ink);
+}
+.aim-table tbody tr:last-child th,
+.aim-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+.aim-table td.aim-muted {
+  color: var(--color-ink-muted);
+}
+.aim-table td.aim-strong {
+  font-weight: 600;
+}
+
+/* 좁은 화면: 표를 카드로 바꾼다 (td에 data-label 필요) */
+@media (max-width: 719px) {
+  .aim-table--stack {
+    border: 0;
+    background: transparent;
+  }
+  .aim-table--stack thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  .aim-table--stack tbody tr {
+    display: block;
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--r-md);
+    padding: var(--sp-3) var(--sp-2);
+    margin-bottom: var(--sp-3);
+  }
+  .aim-table--stack tbody th[scope="row"],
+  .aim-table--stack tbody td {
+    display: block;
+    border: 0;
+    padding: 6px var(--sp-3);
+  }
+  .aim-table--stack tbody th[scope="row"] {
+    font-size: var(--fs-md);
+    padding-bottom: 2px;
+  }
+  .aim-table--stack tbody td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--color-ink-muted);
+    margin-bottom: 2px;
+  }
+}
+
+/* ---------- 홈 섹션: 3가지 원칙 카드 ---------- */
+.aim-points {
+  list-style: none;
+  margin: var(--sp-6) 0 0;
+  padding: 0;
+  display: grid;
+  gap: var(--sp-4);
+}
+.aim-point {
+  padding: var(--sp-5);
+}
+.aim-point h3 {
+  font-size: var(--fs-lg);
+  line-height: 1.4;
+  margin: 0 0 var(--sp-2);
+}
+.aim-point p {
+  margin: 0;
+  font-size: var(--fs-sm);
+  line-height: 1.7;
+}
+.aim-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  margin-top: var(--sp-6);
+}
+@media (min-width: 768px) {
+  .aim-points {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* ---------- 채널 예시 카드 (상세 페이지 안) ---------- */
+.aim-cases {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--sp-3);
+}
+@media (min-width: 768px) {
+  .aim-cases {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.aim-case {
+  padding: var(--sp-4) var(--sp-5);
+}
+.aim-case h3 {
+  font-size: var(--fs-md);
+  margin: 0 0 6px;
+}
+.aim-case p {
+  margin: 0 0 var(--sp-2);
+  font-size: var(--fs-sm);
+  line-height: 1.65;
+}
+.aim-case .more {
+  font-size: var(--fs-sm);
+}
+
+/* ---------- 본문 소제목·목록 ---------- */
+.dx-sec h3.aim-sub {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  margin: var(--sp-3) 0 0;
+}
+.aim-list {
+  margin: 0;
+  padding-left: 1.15em;
+  display: grid;
+  gap: var(--sp-2);
+  max-width: 42rem;
+}
+.aim-list li {
+  line-height: 1.8;
+}
+
+/* ---------- 카테고리 카드 썸네일 (이미지 없이 도식) ---------- */
+.aim-thumb {
+  display: grid;
+  place-content: center;
+  gap: var(--sp-2);
+  padding: var(--sp-4);
+  text-align: center;
+}
+.aim-thumb-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.06em;
+}
+.aim-thumb-steps li {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--r-pill);
+  padding: 4px 10px;
+  color: var(--color-accent-text);
+}
+.aim-thumb-cap {
+  margin: 0;
+  font-size: var(--fs-xs);
+  color: var(--color-ink-muted);
+}
+
+/* ---------- 움직임 줄이기 ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .aim-loop > li,
+  .aim-point,
+  .aim-case {
+    transition: none;
+  }
+}

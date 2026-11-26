@@ -84,10 +84,6 @@
     top: 50%;
     transform: translate(50%, -50%);
   }
-  .aim-loop-return {
-    text-align: right;
-    margin-top: var(--sp-2);
-  }
 }
 
 /* 섹션 안에서 쓰는 축약형: 홈에서는 한 줄 설명만 */
@@ -506,4 +502,112 @@
   line-height: 1.65;
   letter-spacing: -0.01em;
   color: var(--color-ink);
+}
+
+/* v4: 단계 카드 — 제목·설명·완료 기준 줄을 모든 카드에서 같은 높이에 */
+@media (min-width: 900px) {
+  .aim-loop {
+    grid-template-rows: repeat(4, auto);
+  }
+  .aim-loop > li {
+    display: grid;
+    grid-row: span 4;
+    grid-template-rows: subgrid;
+    row-gap: 0;
+    align-content: start;
+  }
+  .aim-loop .aim-pass {
+    align-self: start;
+  }
+}
+
+/* 반복 구조 안내 — 단계 카드 아래 가운데 */
+.aim-loop-return,
+.aim-loop-return:is(p) {
+  text-align: center;
+  margin: var(--sp-4) auto 0;
+}
+.aim-loop-return::before {
+  content: "↻";
+  margin-right: 6px;
+}
+.aim-loop-return b {
+  display: inline-block;
+  margin-right: 8px;
+  padding: 2px 10px;
+  border-radius: var(--r-pill);
+  background: var(--color-surface-warm);
+  color: var(--color-accent-text);
+  font-weight: 800;
+}
+@media (min-width: 900px) {
+  .aim-loop-return {
+    text-align: center;
+  }
+}
+
+/* 적용 사례: 기존 → 적용 후 */
+.aim-case-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-2);
+}
+.aim-case-head h3 {
+  margin: 0;
+}
+.aim-status {
+  font-size: var(--fs-xs);
+  font-weight: 800;
+  padding: 2px 10px;
+  border-radius: var(--r-pill);
+  background: var(--color-lime);
+  color: var(--color-ink);
+  white-space: nowrap;
+}
+.aim-ba {
+  margin: 0 0 var(--sp-2);
+  display: grid;
+  gap: 2px;
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+}
+.aim-ba dt {
+  font-size: var(--fs-xs);
+  font-weight: 800;
+  color: var(--color-ink-muted);
+  margin-top: var(--sp-2);
+}
+.aim-ba dt.aim-after {
+  color: var(--color-accent-text);
+}
+.aim-ba dd {
+  margin: 0;
+}
+.aim-ba dt.aim-after + dd {
+  font-weight: 600;
+  color: var(--color-ink);
+}
+.aim-next {
+  margin: 0 0 var(--sp-2);
+  padding-top: var(--sp-2);
+  border-top: 1px dashed var(--color-line);
+  font-size: var(--fs-xs);
+  color: var(--color-ink-muted);
+}
+
+/* 기준 카드·성과 카드: 내용은 위에서부터 같은 줄로 */
+.aim-checks li,
+.aim-axes li {
+  align-content: start;
+}
+@media (min-width: 768px) {
+  /* 세 카드의 '적용 후'·'업데이트 예정' 줄 높이를 맞춘다 (기존 2줄, 적용 후 3줄 기준) */
+  .aim-ba dd:not(.aim-after + dd) {
+    min-height: 3.2em;
+  }
+  .aim-ba dt.aim-after + dd {
+    min-height: 4.8em;
+  }
 }

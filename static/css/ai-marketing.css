@@ -611,3 +611,16 @@
     min-height: 4.8em;
   }
 }
+
+.aim-status--keep {
+  background: var(--color-surface-warm);
+  color: var(--color-accent-text);
+}
+.aim-ba dd {
+  word-break: keep-all;
+}
+@media (min-width: 768px) {
+  .aim-ba dt.aim-after + dd {
+    min-height: 6.4em;
+  }
+}
